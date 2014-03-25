@@ -1,6 +1,12 @@
 # v4.0.0.beta
 
 * List Portlet [#678] - A convenient way to find content without custom coding.
+* NameInput [#682] - Improved :name input allows for consistent name fields look/feel. New content will be generated with it.
+* [Fixes #684] Forgot Password
+
+  * /cms/forgot-password doesn't exist
+  * Reenable the forgot password link (/forgot-password)
+  * The edit_password page (pulled from email) doesn't work when followed.
 
 ## [#678] List Portlet
 
@@ -16,6 +22,7 @@ This portlet is provides a configurable means to query for and display content w
 
 Each list portlet can also have its own specific view that overrides the default list or table view. Developers can add a new file in a specific location, based on the name of the portlet. This view will then be used when showing the portlet. The exact path for each portlet is displayed in the sidebar. If using a table view, this will almost always need to be overriden since there is no way to configure which columns to show in the portlet.
 
+Other bug fixes: https://github.com/browsermedia/browsercms/issues?milestone=22&state=closed
 
 
 # v4.0.0.alpha

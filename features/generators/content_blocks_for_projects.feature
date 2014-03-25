@@ -34,8 +34,11 @@ Feature:
     """
     And the file "app/views/petstore/products/render.html.erb" should contain:
     """
-    <p><b>Name:</b> <%= @content_block.name %></p>
-    <p><b>Price:</b> <%= @content_block.price %></p>
+    <dt>Name:</dt><dd><%= show :name %></dd>
+    """
+    And the file "app/views/petstore/products/render.html.erb" should contain:
+    """
+    <dt>Price:</dt><dd><%= show :price %></dd>
     """
     And a migration named "create_petstore_products.rb" should contain:
     """
@@ -74,7 +77,7 @@ Feature:
     When I run `rails g cms:content_block product content:html`
     Then the file "app/views/petstore/products/_form.html.erb" should contain:
     """
-    <%= f.input :name, as: :cms_text_field %>
+    <%= f.input :name, as: :name %>
     """
     And the file "app/views/petstore/products/_form.html.erb" should contain:
     """
