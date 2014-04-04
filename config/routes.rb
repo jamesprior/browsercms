@@ -74,6 +74,8 @@ Cms::Engine.routes.draw do
   resources :section_nodes do
     member do
       put :move_to_position
+      get :move_higher
+      get :move_lower
     end
   end
 

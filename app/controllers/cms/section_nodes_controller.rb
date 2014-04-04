@@ -1,7 +1,7 @@
 module Cms
   class SectionNodesController < Cms::BaseController
 
-    check_permissions :publish_content, :except => [:index]
+    check_permissions :administrate, :publish_content, :except => [:index]
 
     def index
       @modifiable_sections = current_user.modifiable_sections
@@ -18,6 +18,18 @@ module Cms
       target_node = SectionNode.find(params[:target_node_id])
       @section_node.move_to(target_node.node, params[:position].to_i)
       render :json => {:success => true, :message => "'#{@section_node.node.name}' was moved to '#{target_node.node.name}'"}
+    end
+    
+    def move_higher
+      @section_node = SectionNode.find(params[:id])
+      @section_node.move_higher
+      redirect_to action: :index
+    end
+    
+    def move_lower
+      @section_node = SectionNode.find(params[:id])
+      @section_node.move_lower
+      redirect_to action: :index
     end
 
   end
