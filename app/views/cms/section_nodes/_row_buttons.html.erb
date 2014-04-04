@@ -1,6 +1,8 @@
 <ul class="edit-group">
   <li><%= link_to 'View', engine_aware_path(section_node.node), class: 'add-link' unless section_node.root? %></li>
   <li><%= link_to 'Edit', edit_engine_aware_path(section_node.node), class: 'add-link' %></li>
+  <li><%= link_to image_tag('cms/arrow-up.png'), cms.move_higher_section_node_path(section_node), class: 'add-link' %></li>
+  <li><%= link_to image_tag('cms/arrow-down.png'), cms.move_lower_section_node_path(section_node), class: 'add-link' %></li>
   <!--<% if section_node.page? %>-->
   <!--<li><a href="#" class="add-link">Archive</a></li>-->
   <!--<% end %>-->
