@@ -5,6 +5,7 @@
 //= require 'bcms/ckeditor'
 //= require 'bcms/ckeditor_inline'
 //= require 'cms/ajax'
+//= require 'cms/user'
 
 // Since we are within the page editing iframe, add a 'target=_top' to all links so they refresh the entire page.
 jQuery(function($){
