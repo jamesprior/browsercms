@@ -224,8 +224,7 @@ module Cms
       #
       def ancestors(options={})
         return [] unless node
-        ancestor_nodes = node.ancestors
-        ancestors = ancestor_nodes.collect { |node| node.node }
+        ancestors = node.ancestors.includes(:node).collect(&:node)
         ancestors << self if options[:include_self]
         ancestors
       end
