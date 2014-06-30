@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
 
   s.executables = ["bcms", "browsercms"]
 
-  s.add_dependency("rails", "~> 4.0.0")
+  s.add_dependency("rails", "~> 4.0")
   s.add_dependency("devise", "~> 3.0")
   s.add_dependency("sass-rails")
   s.add_dependency("bootstrap-sass")
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency("underscore-rails", "~> 1.4")
   s.add_dependency("jquery-rails", "~> 3.1")
   s.add_dependency("jquery-ui-rails", "~> 4.1")
-  s.add_dependency("paperclip", "~> 3.5.1")
+  s.add_dependency("paperclip", "~> 4.1.1")
   s.add_dependency("panoramic")
   s.add_dependency("will_paginate", "~>3.0.0")
   s.add_dependency("actionpack-page_caching", "~>1.0")
