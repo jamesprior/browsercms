@@ -145,7 +145,7 @@ module Cms
                   end
 
                   # Doing the SQL ourselves to avoid callbacks
-                  self.class.unscoped.where(self.class.arel_table[self.class.primary_key].eq(id)).arel.update(quoted_attributes)
+                  self.class.unscoped.where(self.class.arel_table[self.class.primary_key].eq(id)).update_all(quoted_attributes.collect{|ar_at, v| [ar_at.name, v]}.to_h)
                   did_publish = true
                 end
               else
