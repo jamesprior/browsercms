@@ -5,7 +5,7 @@ ActiveRecord::Base.connection.instance_eval do
   drop_table(:thing_attributes) if table_exists?(:thing_attributes)
   create_table(:things) do |t|
     t.string :name
-    t.timestamps
+    t.timestamps null: true
   end
   create_table(:thing_attributes) do |t|
     t.integer :thing_id
@@ -34,10 +34,10 @@ class DynamicAttributesTest < ActiveSupport::TestCase
     assert Thing.has_dynamic_attributes?
   end
 
-  test "can just call properties into existance" do
+  test "can just call properties into existence" do
     @thing.price = 1
 
-    assert_equal(1, @thing.price)
+    assert_equal("1", @thing.price)
   end
 
   test "Can persist String properties" do
@@ -62,7 +62,7 @@ class DynamicAttributesTest < ActiveSupport::TestCase
 
   test "can bulk set attributes=" do
     @thing.attributes=({:price=>1, :description=>"Paper"})
-    assert_equal(1, @thing.price)
+    assert_equal("1", @thing.price)
     assert_equal("Paper", @thing.description)
   end
 

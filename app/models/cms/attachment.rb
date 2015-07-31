@@ -129,12 +129,12 @@ module Cms
     end
 
     def attachable_class
-      attachable_type
+      attachable_type.constantize
     end
 
     # @todo There isn't any good reason I know of why this needs to be a distinct field. Needed to add it to get it working for 4.0 though.
     def attachable_class=(klass)
-      self.attachable_type = klass
+      self.attachable_type = klass.respond_to?(:name) ? klass.name : klass
     end
 
     def section=(section)

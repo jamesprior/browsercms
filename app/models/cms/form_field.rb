@@ -20,6 +20,10 @@ module Cms
     def as_json(options={})
       super(:methods => [:edit_path, :delete_path])
     end
+    
+    def name
+      read_attribute(:name).try(:to_sym)
+    end
 
 
     # Return the form widget that should be used to render this field.

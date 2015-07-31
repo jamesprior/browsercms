@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.2'
 
 # Load this project as a gem.
 gemspec
@@ -19,7 +19,7 @@ end
 
 group :development do
   gem 'rake'
-  gem 'debugger'
+  gem 'byebug'
   gem 'quiet_assets'
 end
 group :test, :development do
@@ -29,12 +29,13 @@ group :test, :development do
 end
 
 group :test do
+  gem 'rspec-expectations', '2.14.1'
   gem 'poltergeist'
   gem 'm', '~> 1.2'
 
   gem 'single_test'
   gem 'factory_girl_rails', '3.3.0'
-  gem "mocha", :require=>false
+  gem "mocha", '0.14.0', :require=>false
   gem "sqlite3-ruby", :require => "sqlite3"
 
   # Cucumber and dependencies
@@ -44,5 +45,5 @@ group :test do
   gem 'cucumber'
   gem 'launchy'
   gem 'ruby-prof'
-  gem 'aruba'
+  gem 'aruba', '0.5.3'
 end

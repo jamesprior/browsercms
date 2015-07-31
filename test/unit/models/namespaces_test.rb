@@ -42,7 +42,8 @@ class NamespacesTest < ActiveSupport::TestCase
     test "ensure a #{klass.name} has valid reflections" do
       if klass.kind_of? ActiveRecord::Base
         @obj = klass.new
-        klass.reflections.each do |name, reflection|
+        klass.reflect_on_all_associations.each do |reflection|
+          name = reflection.name
           assert_nothing_thrown("Error with #{name} reflection") do
             @obj.send(name)
             reflection.klass unless reflection.options[:polymorphic]

@@ -36,9 +36,7 @@ module Cms
         obj.after_as_of_version if obj.respond_to?(:after_as_of_version)
 
         # Last but not least, clear the changed attributes
-        if changed_attrs = obj.send(:changed_attributes)
-          changed_attrs.clear
-        end
+        clear_changes_information
 
         obj
       end
@@ -228,7 +226,7 @@ module Cms
             self.version = 1
             # This should call ActiveRecord::Callbacks#create_or_update, which will correctly trigger the :save callback_chain
             saved_correctly = super
-            changed_attributes.clear
+            clear_changes_information
           else
             logger.debug { "#{self.class}#update" }
             # Because we are 'skipping' the normal ActiveRecord update here, we must manually call the save callback chain.
@@ -336,7 +334,7 @@ module Cms
 
         def version_comment=(version_comment)
           @version_comment = version_comment
-          send(:changed_attributes)["version_comment"] = @version_comment
+          attribute_will_change!(:version_comment)
         end
 
         def different_from_last_draft?

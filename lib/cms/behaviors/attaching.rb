@@ -71,7 +71,7 @@ module Cms
           min = options[:greater_than] || (options[:in] && options[:in].first) || 0
           max = options[:less_than] || (options[:in] && options[:in].last) || (1.0/0)
           range = (min..max)
-          message = options[:message] || "#{name.to_s.capitalize} file size must be between :min and :max bytes."
+          message = options.delete(:message) || "#{name.to_s.capitalize} file size must be between :min and :max bytes."
           message = message.gsub(/:min/, min.to_s).gsub(/:max/, max.to_s)
 
           #options[:unless] = Proc.new {|r| r.a.asset_name != name.to_s}
@@ -85,7 +85,7 @@ module Cms
         end
 
         def validates_attachment_presence(name, options = {})
-          message = options[:message] || "Must provide at least one #{name}"
+          message = options.delete(:message) || "Must provide at least one #{name}"
           validate(options) do |record|
             if !record.deleted?
               unless record.attachments.any? { |a| a.attachment_name == name.to_s }
@@ -98,10 +98,11 @@ module Cms
         def validates_attachment_content_type(name, options = {})
           validation_options = options.dup
           allowed_types = [validation_options[:content_type]].flatten
+          message = validation_options.delete(:message) || "is not one of #{allowed_types.join(', ')}"
           validate(validation_options) do |record|
             attachments.each do |a|
               if !allowed_types.any? { |t| t === a.data_content_type } && !(a.data_content_type.nil? || a.data_content_type.blank?)
-                record.add_to_base(options[:message] || "is not one of #{allowed_types.join(', ')}")
+                record.add_to_base(message)
               end
             end
 
@@ -199,7 +200,8 @@ module Cms
         # Otherwise, if the change isn't detected, this record won't save a new version (since updates are rejected if no changes were made)
         def check_for_updated_attachments
           if attachments_changed == "true" || attachments_were_updated?
-            changed_attributes['attachments'] = "Uploaded new files"
+            self.updated_at = Time.now
+            # changed_attributes['attachments'] = "Uploaded new files"
           end
         end
 

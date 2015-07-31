@@ -55,7 +55,7 @@ module Cms
     def deliver!
       return false if delivered?
       self.sender = self.class.mailbot_address if self.sender.blank?
-      Cms::EmailMessageMailer.email_message(self).deliver
+      Cms::EmailMessageMailer.email_message(self).deliver_now
       update_attributes(:delivered_at => Time.now)
     end
 

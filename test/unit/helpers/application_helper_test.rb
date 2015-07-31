@@ -46,8 +46,8 @@ class Cms::ApplicationHelper::EditButtonTest < ActionView::TestCase
   # Scenario: Edit Buttons should:
 
   test "generate a button without an explicit title by default" do
-    expected_html = '<a class="button disabled" href="#" id="edit_button"><span>&nbsp;Edit&nbsp;</span></a>'
-    assert_equal expected_html, edit_button
+    assert edit_button.include?('class="button disabled"')
+    assert edit_button.include?('><span>&nbsp;Edit&nbsp;</span></a>')
   end
 
 

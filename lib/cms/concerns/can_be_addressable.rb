@@ -242,8 +242,9 @@ module Cms
         parent.try(:id)
       end
 
-      def parent_id=(id)
-        self.parent = Cms::Section.find(id)
+      def parent_id=(id_param)
+        id_param = id_param.kind_of?(Cms::Section) ? id_param.id : id_param
+        self.parent = Cms::Section.find(id_param)
         # Handles slug being set before there is a parent
         if @slug
           self.slug = @slug
@@ -292,7 +293,8 @@ module Cms
           section ? section.id : nil
         end
 
-        def section_id=(sec_id)
+        def section_id=(sec)
+          sec_id = sec.kind_of?(Section) ? sec.id : sec
           self.section = Section.find(sec_id)
         end
 
