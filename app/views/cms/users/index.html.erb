@@ -57,9 +57,12 @@
           </tr>
       <% end %>
     </table>
-    <% if @users.size == 0 && params[:key_word] %>
-        <div class="pagination">No results found for '<%= params[:key_word] %>'</div>
-    <% elsif @users.total_pages > 1 %>
-        <%= render_pagination @users, Cms::User %>
-    <% end %>
 <% end %>
+
+<div class='padded row-fluid clearfix'>
+  <% if @users.size == 0 && params[:key_word] %>
+      <div class="pagination">No results found for '<%= params[:key_word] %>'</div>
+  <% elsif @users.total_pages > 1 %>
+      <%= render_pagination @users, Cms::User %>
+  <% end %>
+</div>

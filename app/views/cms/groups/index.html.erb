@@ -31,6 +31,9 @@
     <% end %>
   </table>
 <% end %>
-<% if @groups.total_pages > 1 %>
-  <%= render_pagination @groups, Cms::Group %>
-<% end %>
+
+<div class='padded row-fluid clearfix'>
+  <% if @groups.total_pages > 1 %>
+    <%= render_pagination @groups, Cms::Group %>
+  <% end %>
+</div>
