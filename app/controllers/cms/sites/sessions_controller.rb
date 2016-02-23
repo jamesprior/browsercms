@@ -7,7 +7,7 @@ module Cms
       helper AuthenticationHelper
       helper UiElementsHelper
 
-      template :default
+      layout 'cms/application'
 
       def new
         use_page_title 'Login'
