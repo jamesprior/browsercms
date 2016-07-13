@@ -10,6 +10,7 @@ module Cms
       @sitemap = Section.sitemap
       @root_section_node = @sitemap.keys.first
       @section = @root_section_node.node
+      @modifiable_sections_cache_key = ['modifiable',*@modifiable_sections.collect(&:id).sort].join("-")
       render 'show'
     end
 

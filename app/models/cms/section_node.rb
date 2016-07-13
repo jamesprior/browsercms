@@ -4,6 +4,8 @@ class Cms::SectionNode < ActiveRecord::Base
   has_ancestry
 
   validates :slug, uniqueness: { scope: :node_type }, unless: lambda { |sn| sn.slug.blank?}
+  
+  after_save :touch_ancestors
 
   # This is the parent section for this node
   # For backwards compatiblity
@@ -140,5 +142,10 @@ class Cms::SectionNode < ActiveRecord::Base
 
   def ancestry_path
     path_ids.join "/"
+  end
+  
+  def touch_ancestors
+    # for cache busting
+    ancestors.each(&:touch)
   end
 end

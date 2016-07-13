@@ -1,3 +1,4 @@
+<%= cache([section_node, @modifiable_sections_cache_key]) do %>
 <ul class="nav nav-list">
   <li class="nav-list-item">
     <span class="nav-list-span <%= sitemap_depth_class(section_node) %> <%= draggable_class?(@modifiable_sections, section_node, parent) %>"
@@ -22,3 +23,4 @@
     <%= render partial: 'children', locals: {parent: section_node, children: children} %>
   </li>
 </ul>
+<% end %>

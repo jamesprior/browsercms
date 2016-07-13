@@ -23,6 +23,10 @@ module Cms
         after_save do
           if section_node && section_node.changed?
             section_node.save
+          else
+            # cache busting
+            section_node.touch
+            section_node.touch_ancestors
           end
         end
 
