@@ -15,7 +15,7 @@
         </span>
 
       <% if current_user_can_modify(@modifiable_sections, section_node, parent) %>
-        <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
+        <%= render partial: 'row_buttons', locals: {section_node: section_node, children: children} %>
       <% end %>
       <%= render partial: 'status', locals: {parent: parent.node, content: section_node.node} if parent %>
     </span>
