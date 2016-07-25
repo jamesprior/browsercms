@@ -219,6 +219,7 @@ module Cms
           unless different_from_last_draft?
             logger.debug { "No difference between this version and last. Skipping save" }
             self.skip_callbacks = true
+            publish_if_needed
             return true
           end
           logger.debug { "Saving #{self.class} #{self.attributes}" }
