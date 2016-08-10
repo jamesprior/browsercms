@@ -25,7 +25,7 @@ module Cms
             section_node.save
           else
             # cache busting
-            section_node.touch unless section_node.new_record?
+            section_node.touch if section_node.new_record? == false && section_node.frozen? == false && section_node.destroyed? == false
             section_node.touch_ancestors
           end
         end
